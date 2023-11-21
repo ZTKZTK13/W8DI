@@ -47,29 +47,66 @@ Queue<T>::Queue() {
 // at the rear of the queue.                     *
 //************************************************
 template<class T>
-void Queue<T>::enqueue(T anElement){
+void Queue<T>::enqueue(T anElement) {
 
-    numNodes ++;
-    Node(anElement, front);
+    numNodes++;
+    Node newNode = Node(anElement, front);
+    front = &newNode;
+
+//    Node *newNode = new Node(num);
+//    if (isEmpty()){
+//        front = newNode;
+//        back = newNode;
+//    } else {
+//        back -> next = newNode;
+//        back = newNode;
+//    }
+//    ++numNodes;
 
 }
+
 
 //************************************************
 // Function dequeue removes the value at the     *
 // front of the queue, and copies it into num.   *
 //************************************************
+template<class T>
+void Queue<T>::dequeue(T &) {
+
+     Node* nodePtr = nullptr;
+
+     if (isEmpty()){
+         std::cout << "Queue is empty" << std::endl;
+     } else {
+         T num = front->element;
+         nodePtr = front->next;
+         delete front;
+         front = nodePtr;
+         --numNodes;
+     }
+}
 
 
 //************************************************
 // Function isEmpty returns true if the queue    *
 // is empty, and false otherwise.                *
 //************************************************
-
+template<class T>
+bool Queue<T>::isEmpty() {
+    return numNodes == 0;
+}
 
 //************************************************
 // Function clear dequeues all the elements      *
 // in the queue.                                 *
 //************************************************
+template<class T>
+void Queue<T>::clear() {
+    T value;
+    while(!isEmpty()){
+        dequeue(value);
+    }
+}
 
 
 #endif //WEEK8_QUEUE_H
