@@ -7,6 +7,11 @@ private:
     struct Node {
         T element;
         Node* next;
+
+        Node(T anElement, Node* aNextPointer = nullptr){
+            element = anElement;
+            next = aNextPointer;
+        }
     };
 
     Node* front;
@@ -22,10 +27,15 @@ public:
     void clear();
 };
 
+
+
 //************************************************
 // Constructor                                   *
 //************************************************
+template<class T>
+Queue<T>::Queue() {
 
+}
 
 //************************************************
 // Destructor                                    *
@@ -36,7 +46,13 @@ public:
 // Function enqueue inserts the value in num     *
 // at the rear of the queue.                     *
 //************************************************
+template<class T>
+void Queue<T>::enqueue(T anElement){
 
+    numNodes ++;
+    Node(anElement, front);
+
+}
 
 //************************************************
 // Function dequeue removes the value at the     *
